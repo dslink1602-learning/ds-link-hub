@@ -312,38 +312,86 @@
       background: #f3f6fa;
     }
 
-    .zoom-controls {
-      display: none;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .zoom-btn {
-      border: 1px solid #dbe3ed;
-      background: white;
-      border-radius: 7px;
-      min-width: 30px;
-      height: 30px;
-      padding: 0 7px;
-      cursor: pointer;
-      font-size: 14px;
-      color: #374151;
-      line-height: 1;
-    }
-
-    .zoom-value {
-      min-width: 42px;
-      text-align: center;
-      font-size: 10px;
-      color: #6b7280;
-      font-weight: 700;
-    }
-
     .frame-container {
       flex: 1;
       min-height: 0;
       position: relative;
       background: white;
+    }
+
+    .zoom-slider-panel {
+      display: none;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      width: 38px;
+      height: 180px;
+      padding: 8px 5px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid #dbe3ed;
+      border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .zoom-slider-title {
+      font-size: 8px;
+      font-weight: 700;
+      color: #6b7280;
+    }
+
+    .zoom-range {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 120px;
+      height: 24px;
+      margin: 0;
+      transform: rotate(-90deg);
+      background: transparent;
+      cursor: pointer;
+      accent-color: #075dcc;
+    }
+
+    .zoom-range::-webkit-slider-runnable-track {
+      height: 4px;
+      background: #dbe3ed;
+      border-radius: 4px;
+    }
+
+    .zoom-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      margin-top: -8px;
+      border-radius: 50%;
+      background: #075dcc;
+      border: 2px solid white;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    }
+
+    .zoom-range::-moz-range-track {
+      height: 4px;
+      background: #dbe3ed;
+      border-radius: 4px;
+    }
+
+    .zoom-range::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #075dcc;
+      border: 2px solid white;
+    }
+
+    .zoom-percent {
+      font-size: 9px;
+      font-weight: 800;
+      color: #075dcc;
     }
 
     iframe {
@@ -533,7 +581,7 @@
       }
 
 
-      .zoom-controls {
+      .zoom-slider-panel {
         display: flex;
       }
 
@@ -1010,21 +1058,6 @@
           </button>
 
 
-          <div class="zoom-controls">
-
-            <button class="zoom-btn"
-                    onclick="changeZoom(-5)"
-                    aria-label="Perkecil">−</button>
-
-            <div id="zoomValue" class="zoom-value">100%</div>
-
-            <button class="zoom-btn"
-                    onclick="changeZoom(5)"
-                    aria-label="Perbesar">+</button>
-
-          </div>
-
-
           <button class="toolbar-btn"
                   onclick="openNewTab()">
 
@@ -1039,6 +1072,25 @@
 
 
       <div class="frame-container">
+
+
+        <div class="zoom-slider-panel" aria-label="Kontrol zoom">
+
+          <div class="zoom-slider-title">ZOOM</div>
+
+          <input
+            id="zoomRange"
+            class="zoom-range"
+            type="range"
+            min="50"
+            max="120"
+            step="1"
+            value="100"
+            aria-label="Atur zoom">
+
+          <div id="zoomPercent" class="zoom-percent">100%</div>
+
+        </div>
 
 
         <div id="loading"
@@ -1152,26 +1204,35 @@
   function applyZoom() {
 
     const frame = document.getElementById("appFrame");
-    const value = currentZoom / 100;
+    const slider = document.getElementById("zoomRange");
+    const percent = document.getElementById("zoomPercent");
 
-    frame.style.width = (100 / value) + "%";
-    frame.style.height = (100 / value) + "%";
-    frame.style.transform = "scale(" + value + ")";
+    const scale = currentZoom / 100;
+
+    frame.style.width = (100 / scale) + "%";
+    frame.style.height = (100 / scale) + "%";
+    frame.style.transform = "scale(" + scale + ")";
     frame.style.transformOrigin = "top left";
 
-    document.getElementById("zoomValue").textContent =
-      currentZoom + "%";
+    if (slider) slider.value = currentZoom;
+    if (percent) percent.textContent = currentZoom + "%";
   }
 
 
-  function changeZoom(step) {
+  function setZoom(value) {
 
-    currentZoom += step;
-
-    if (currentZoom < 50) currentZoom = 50;
-    if (currentZoom > 120) currentZoom = 120;
+    currentZoom = Math.max(50, Math.min(120, Number(value)));
 
     applyZoom();
+  }
+
+
+  const zoomRange = document.getElementById("zoomRange");
+
+  if (zoomRange) {
+    zoomRange.addEventListener("input", function () {
+      setZoom(this.value);
+    });
   }
 
 
