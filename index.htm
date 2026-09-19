@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DS LINK HUB</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+    }
+
+    .menu {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      background: #0b5ed7;
+    }
+
+    .menu button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: white;
+      color: #0b5ed7;
+      font-weight: bold;
+    }
+
+    .menu button:hover {
+      background: #e8f0ff;
+    }
+
+    iframe {
+      width: 100%;
+      height: calc(100vh - 70px);
+      border: none;
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="menu">
+
+    <button onclick="openApp('promo')">
+      🎯 Promo Center
+    </button>
+
+    <button onclick="openApp('crm')">
+      👥 CRM
+    </button>
+
+    <button onclick="openApp('performance')">
+      📊 Performance
+    </button>
+
+    <button onclick="openApp('stok')">
+      📦 Stok
+    </button>
+
+  </div>
+
+  <iframe id="appFrame"></iframe>
+
+  <script>
+
+    const apps = {
+
+      promo:
+      "https://script.google.com/macros/s/AKfycbxVuXOvR79WE-4EtbIopSzfmWJDngmKMQtNV2Q44-8VFGrnWj41b6fmUyy_y-PVt7pHVA/exec",
+
+      crm:
+      "https://script.google.com/macros/s/AKfycbzEDQHme0spH7fQuMDWOHGlknMTDQmoBu1nbF_vKGTI-WTlW7XxvNsCNJPYUMvPqeUjvA/exec",
+
+      performance:
+      "https://script.google.com/macros/s/AKfycbwXYyviCAvDPbYqHhwUCDtBKplp9eOVEL5xSCt3SRlFnBOPMN8AmXaJyfhim2yhCpnc/exec",
+
+      stok:
+      "https://dslink1602-learning.github.io/stok-ds-link/"
+
+    };
+
+    function openApp(app) {
+      document.getElementById("appFrame").src = apps[app];
+    }
+
+    openApp("promo");
+
+  </script>
+
+</body>
+</html>
