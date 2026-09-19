@@ -312,6 +312,36 @@
       background: #f3f6fa;
     }
 
+    .zoom-controls {
+      display: none;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .zoom-btn {
+      border: 1px solid #dbe3ed;
+      background: white;
+      border-radius: 7px;
+      min-width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 15px;
+      color: #374151;
+      line-height: 1;
+    }
+
+    .zoom-btn:hover {
+      background: #f3f6fa;
+    }
+
+    .zoom-value {
+      min-width: 48px;
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: 700;
+    }
+
     .frame-container {
       flex: 1;
       min-height: 0;
@@ -324,6 +354,7 @@
         height: 100%;
         border: none;
         display: block;
+    }
     }
 
 
@@ -504,6 +535,25 @@
         font-size: 10px;
       }
 
+
+      .app-toolbar {
+        gap: 6px;
+      }
+
+      .zoom-controls {
+        display: flex;
+      }
+
+      .zoom-btn {
+        min-width: 28px;
+        height: 28px;
+        font-size: 14px;
+      }
+
+      .zoom-value {
+        min-width: 40px;
+        font-size: 10px;
+      }
 
       /* ---------- APP ---------- */
 
@@ -977,8 +1027,22 @@
 
           </button>
 
+            <div class="zoom-controls" aria-label="Kontrol zoom">
 
-          <button class="toolbar-btn"
+              <button class="zoom-btn"
+                      onclick="changeZoom(-10)"
+                      aria-label="Perkecil">−</button>
+
+              <div id="zoomValue" class="zoom-value">100%</div>
+
+              <button class="zoom-btn"
+                      onclick="changeZoom(10)"
+                      aria-label="Perbesar">+</button>
+
+            </div>
+
+
+            <button class="toolbar-btn"
                   onclick="openNewTab()">
 
             ↗ Buka di tab baru
@@ -1099,6 +1163,37 @@
 
 
   let currentApp = null;
+  let currentZoom = 100;
+
+
+  /* =====================================================
+     ZOOM
+  ===================================================== */
+
+  function applyZoom() {
+
+    const frame = document.getElementById("appFrame");
+    const value = currentZoom / 100;
+
+    frame.style.width = (100 / value) + "%";
+    frame.style.height = (100 / value) + "%";
+    frame.style.transform = "scale(" + value + ")";
+    frame.style.transformOrigin = "top left";
+
+    document.getElementById("zoomValue").textContent =
+      currentZoom + "%";
+  }
+
+
+  function changeZoom(step) {
+
+    currentZoom += step;
+
+    if (currentZoom < 70) currentZoom = 70;
+    if (currentZoom > 120) currentZoom = 120;
+
+    applyZoom();
+  }
 
 
 
@@ -1142,6 +1237,8 @@
 
 
     currentApp = app;
+    currentZoom = 100;
+    applyZoom();
 
 
     document.getElementById("homeContent").style.display =
