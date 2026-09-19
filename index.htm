@@ -313,12 +313,8 @@
     }
 
     .zoom-popover {
-      display: none;
-      position: relative;
-    }
-
-    .zoom-popover.open {
       display: block;
+      position: relative;
     }
 
     .zoom-toggle {
@@ -335,6 +331,7 @@
     }
 
     .zoom-panel {
+      display: none;
       position: absolute;
       top: calc(100% + 8px);
       right: 0;
@@ -346,6 +343,12 @@
       border: 1px solid #dbe3ed;
       border-radius: 16px;
       box-shadow: 0 5px 18px rgba(0,0,0,0.14);
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .zoom-popover.open .zoom-panel {
       display: flex;
       flex-direction: column;
       align-items: center;
