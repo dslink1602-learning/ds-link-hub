@@ -7,34 +7,45 @@
   <title>DS LINK HUB</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
       font-family: Arial, Helvetica, sans-serif;
       background: #f4f7fb;
       color: #1f2937;
+    }
+
+    body {
       overflow: hidden;
     }
 
-    /* =========================
-       LAYOUT
-    ========================= */
+
+    /* =====================================================
+       MAIN LAYOUT
+    ===================================================== */
 
     .app {
       display: flex;
-      height: 100vh;
       width: 100%;
+      height: 100vh;
     }
 
-    /* =========================
-       SIDEBAR
-    ========================= */
+
+    /* =====================================================
+       SIDEBAR DESKTOP
+    ===================================================== */
 
     .sidebar {
       width: 250px;
+      height: 100vh;
       background: #075dcc;
       color: white;
       display: flex;
@@ -43,7 +54,7 @@
     }
 
     .brand {
-      padding: 25px 22px 22px;
+      padding: 28px 22px 23px;
       border-bottom: 1px solid rgba(255,255,255,0.15);
     }
 
@@ -54,7 +65,7 @@
     }
 
     .brand-subtitle {
-      margin-top: 5px;
+      margin-top: 6px;
       font-size: 12px;
       opacity: 0.85;
     }
@@ -97,7 +108,6 @@
       background: white;
       color: #075dcc;
       font-weight: 700;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .menu-icon {
@@ -113,20 +123,23 @@
       border-top: 1px solid rgba(255,255,255,0.15);
     }
 
-    /* =========================
+
+    /* =====================================================
        MAIN
-    ========================= */
+    ===================================================== */
 
     .main {
       flex: 1;
       min-width: 0;
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* =========================
+
+    /* =====================================================
        HEADER
-    ========================= */
+    ===================================================== */
 
     .header {
       height: 70px;
@@ -159,19 +172,16 @@
       color: #6b7280;
     }
 
-    /* =========================
-       CONTENT
-    ========================= */
+
+    /* =====================================================
+       CONTENT HOME
+    ===================================================== */
 
     .content {
       flex: 1;
       overflow: auto;
       padding: 30px;
     }
-
-    /* =========================
-       HOME
-    ========================= */
 
     .welcome {
       margin-bottom: 28px;
@@ -193,12 +203,12 @@
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 15px;
-      color: #374151;
     }
 
-    /* =========================
+
+    /* =====================================================
        CARDS
-    ========================= */
+    ===================================================== */
 
     .cards {
       display: grid;
@@ -212,7 +222,7 @@
       padding: 22px;
       border: 1px solid #e5e7eb;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: 0.2s;
       min-height: 170px;
       display: flex;
       flex-direction: column;
@@ -222,7 +232,6 @@
     .card:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      border-color: #b9d3f5;
     }
 
     .card-icon {
@@ -256,14 +265,16 @@
       font-weight: 700;
     }
 
-    /* =========================
+
+    /* =====================================================
        APP VIEW
-    ========================= */
+    ===================================================== */
 
     .app-view {
       height: 100%;
       display: none;
       flex-direction: column;
+      min-height: 0;
     }
 
     .app-toolbar {
@@ -303,8 +314,9 @@
 
     .frame-container {
       flex: 1;
-      background: white;
+      min-height: 0;
       position: relative;
+      background: white;
     }
 
     iframe {
@@ -314,9 +326,10 @@
       display: block;
     }
 
-    /* =========================
+
+    /* =====================================================
        LOADING
-    ========================= */
+    ===================================================== */
 
     .loading {
       position: absolute;
@@ -331,11 +344,12 @@
     .loading-box {
       text-align: center;
       color: #6b7280;
+      font-size: 13px;
     }
 
     .spinner {
-      width: 35px;
-      height: 35px;
+      width: 34px;
+      height: 34px;
       border: 4px solid #e5e7eb;
       border-top: 4px solid #075dcc;
       border-radius: 50%;
@@ -349,11 +363,203 @@
       }
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
 
-    @media (max-width: 900px) {
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 650px) {
+
+      body {
+        overflow: hidden;
+      }
+
+      .app {
+        display: block;
+        width: 100%;
+        height: 100vh;
+      }
+
+
+      /* ---------- MOBILE HEADER ---------- */
+
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        width: 100%;
+        height: 100vh;
+      }
+
+      .header {
+        height: 62px;
+        padding: 0 15px;
+      }
+
+      .header-icon {
+        font-size: 22px;
+      }
+
+      .header-title {
+        font-size: 17px;
+      }
+
+      .header-right {
+        display: none;
+      }
+
+
+      /* ---------- MOBILE MENU ---------- */
+
+      .mobile-menu {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: #075dcc;
+        padding: 8px 10px;
+        gap: 7px;
+        flex-shrink: 0;
+        scrollbar-width: none;
+      }
+
+      .mobile-menu::-webkit-scrollbar {
+        display: none;
+      }
+
+      .mobile-menu button {
+        flex: 0 0 auto;
+        border: none;
+        background: transparent;
+        color: white;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .mobile-menu button.active {
+        background: white;
+        color: #075dcc;
+        font-weight: 700;
+      }
+
+
+      /* ---------- HOME ---------- */
+
+      .content {
+        padding: 20px 15px;
+        overflow-y: auto;
+      }
+
+      .welcome {
+        margin-bottom: 20px;
+      }
+
+      .welcome h1 {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      .welcome p {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .section-title {
+        margin-bottom: 12px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .card {
+        min-height: 155px;
+        padding: 15px;
+        border-radius: 13px;
+      }
+
+      .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+
+      .card h3 {
+        font-size: 14px;
+        margin: 12px 0 4px;
+      }
+
+      .card p {
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      .card-arrow {
+        margin-top: 10px;
+        font-size: 10px;
+      }
+
+
+      /* ---------- APP ---------- */
+
+      .app-view {
+        height: calc(100vh - 110px);
+      }
+
+      .app-toolbar {
+        height: 48px;
+        padding: 0 10px;
+      }
+
+      .app-name {
+        font-size: 13px;
+      }
+
+      .toolbar-buttons {
+        gap: 5px;
+      }
+
+      .toolbar-btn {
+        padding: 6px 8px;
+        font-size: 10px;
+      }
+
+      .frame-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+    }
+
+
+    /* =====================================================
+       DESKTOP - MOBILE MENU HIDDEN
+    ===================================================== */
+
+    @media (min-width: 651px) {
+
+      .mobile-menu {
+        display: none;
+      }
+
+    }
+
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media (min-width: 651px) and (max-width: 1100px) {
 
       .sidebar {
         width: 210px;
@@ -365,88 +571,33 @@
 
     }
 
-    @media (max-width: 650px) {
-
-      .sidebar {
-        width: 70px;
-      }
-
-      .brand {
-        padding: 20px 8px;
-        text-align: center;
-      }
-
-      .brand-title {
-        font-size: 12px;
-      }
-
-      .brand-subtitle {
-        display: none;
-      }
-
-      .menu-title {
-        display: none;
-      }
-
-      .menu button {
-        justify-content: center;
-        padding: 13px 5px;
-      }
-
-      .menu button span:not(.menu-icon) {
-        display: none;
-      }
-
-      .menu-icon {
-        font-size: 20px;
-      }
-
-      .sidebar-footer {
-        display: none;
-      }
-
-      .header {
-        padding: 0 15px;
-      }
-
-      .header-right {
-        display: none;
-      }
-
-      .content {
-        padding: 20px;
-      }
-
-      .welcome h1 {
-        font-size: 23px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        min-height: 145px;
-      }
-
-    }
   </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-  <!-- =========================
-       SIDEBAR
-  ========================== -->
+
+  <!-- ===================================================
+       SIDEBAR DESKTOP
+  ==================================================== -->
 
   <aside class="sidebar">
 
     <div class="brand">
-      <div class="brand-title">DS LINK HUB</div>
-      <div class="brand-subtitle">Your DS Link Workspace</div>
+
+      <div class="brand-title">
+        DS LINK HUB
+      </div>
+
+      <div class="brand-subtitle">
+        Your DS Link Workspace
+      </div>
+
     </div>
+
 
     <div class="menu">
 
@@ -454,38 +605,63 @@
         Workspace
       </div>
 
+
       <button id="menu-home"
               class="active"
               onclick="showHome()">
+
         <span class="menu-icon">🏠</span>
         <span>Home</span>
+
       </button>
+
 
       <button id="menu-promo"
               onclick="openApp('promo')">
+
         <span class="menu-icon">🎯</span>
         <span>Promo Center</span>
+
       </button>
+
 
       <button id="menu-crm"
               onclick="openApp('crm')">
+
         <span class="menu-icon">👥</span>
         <span>CRM</span>
+
       </button>
+
 
       <button id="menu-performance"
               onclick="openApp('performance')">
+
         <span class="menu-icon">📊</span>
         <span>Performance</span>
+
       </button>
+
 
       <button id="menu-stok"
               onclick="openApp('stok')">
+
         <span class="menu-icon">📦</span>
         <span>Stok</span>
+
+      </button>
+
+
+      <button id="menu-katalog"
+              onclick="openApp('katalog')">
+
+        <span class="menu-icon">📚</span>
+        <span>Katalog</span>
+
       </button>
 
     </div>
+
 
     <div class="sidebar-footer">
       DS LINK KROYA
@@ -494,11 +670,13 @@
   </aside>
 
 
-  <!-- =========================
+
+  <!-- ===================================================
        MAIN
-  ========================== -->
+  ==================================================== -->
 
   <main class="main">
+
 
     <!-- HEADER -->
 
@@ -508,15 +686,20 @@
 
         <div id="headerIcon"
              class="header-icon">
+
           🏠
+
         </div>
 
         <div id="headerTitle"
              class="header-title">
+
           Home
+
         </div>
 
       </div>
+
 
       <div class="header-right">
         Your DS Link Workspace
@@ -525,9 +708,68 @@
     </header>
 
 
-    <!-- =========================
-         HOME CONTENT
-    ========================== -->
+
+    <!-- =================================================
+         MOBILE MENU
+    ================================================== -->
+
+    <nav class="mobile-menu">
+
+      <button id="mobile-home"
+              class="active"
+              onclick="showHome()">
+
+        🏠 Home
+
+      </button>
+
+
+      <button id="mobile-promo"
+              onclick="openApp('promo')">
+
+        🎯 Promo
+
+      </button>
+
+
+      <button id="mobile-crm"
+              onclick="openApp('crm')">
+
+        👥 CRM
+
+      </button>
+
+
+      <button id="mobile-performance"
+              onclick="openApp('performance')">
+
+        📊 Performance
+
+      </button>
+
+
+      <button id="mobile-stok"
+              onclick="openApp('stok')">
+
+        📦 Stok
+
+      </button>
+
+
+      <button id="mobile-katalog"
+              onclick="openApp('katalog')">
+
+        📚 Katalog
+
+      </button>
+
+    </nav>
+
+
+
+    <!-- =================================================
+         HOME
+    ================================================== -->
 
     <section id="homeContent"
              class="content">
@@ -539,10 +781,11 @@
         </h1>
 
         <p>
-          Satu workspace untuk mengakses berbagai tools DS Link.
+          Your DS Link Workspace
         </p>
 
       </div>
+
 
       <div class="section-title">
         Tools DS Link
@@ -550,6 +793,7 @@
 
 
       <div class="cards">
+
 
         <!-- PROMO -->
 
@@ -578,6 +822,7 @@
           </div>
 
         </div>
+
 
 
         <!-- CRM -->
@@ -609,6 +854,7 @@
         </div>
 
 
+
         <!-- PERFORMANCE -->
 
         <div class="card"
@@ -636,6 +882,7 @@
           </div>
 
         </div>
+
 
 
         <!-- STOK -->
@@ -666,35 +913,76 @@
 
         </div>
 
+
+
+        <!-- KATALOG -->
+
+        <div class="card"
+             onclick="openApp('katalog')">
+
+          <div>
+
+            <div class="card-icon">
+              📚
+            </div>
+
+            <h3>
+              Katalog
+            </h3>
+
+            <p>
+              Lihat katalog produk dan
+              informasi produk DS Link.
+            </p>
+
+          </div>
+
+          <div class="card-arrow">
+            Buka Katalog →
+          </div>
+
+        </div>
+
+
       </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =================================================
          APP VIEW
-    ========================== -->
+    ================================================== -->
 
     <section id="appView"
              class="app-view">
+
 
       <div class="app-toolbar">
 
         <div id="appName"
              class="app-name">
+
           Application
+
         </div>
+
 
         <div class="toolbar-buttons">
 
           <button class="toolbar-btn"
                   onclick="refreshApp()">
+
             🔄 Refresh
+
           </button>
+
 
           <button class="toolbar-btn"
                   onclick="openNewTab()">
+
             ↗ Buka di tab baru
+
           </button>
 
         </div>
@@ -702,7 +990,9 @@
       </div>
 
 
+
       <div class="frame-container">
+
 
         <div id="loading"
              class="loading">
@@ -719,49 +1009,90 @@
 
         </div>
 
+
         <iframe id="appFrame"
                 allow="fullscreen">
         </iframe>
 
+
       </div>
 
     </section>
+
 
   </main>
 
 </div>
 
 
+
 <script>
 
-  /* =========================
+
+  /* =====================================================
      APPLICATION URL
-  ========================== */
+  ===================================================== */
 
   const apps = {
 
+
     promo: {
+
       name: "Promo Center",
+
       icon: "🎯",
-      url: "https://script.google.com/macros/s/AKfycbxVuXOvR79WE-4EtbIopSzfmWJDngmKMQtNV2Q44-8VFGrnWj41b6fmUyy_y-PVt7pHVA/exec"
+
+      url:
+      "https://script.google.com/macros/s/AKfycbxVuXOvR79WE-4EtbIopSzfmWJDngmKMQtNV2Q44-8VFGrnWj41b6fmUyy_y-PVt7pHVA/exec"
+
     },
+
 
     crm: {
+
       name: "CRM",
+
       icon: "👥",
-      url: "https://script.google.com/macros/s/AKfycbzEDQHme0spH7fQuMDWOHGlknMTDQmoBu1nbF_vKGTI-WTlW7XxvNsCNJPYUMvPqeUjvA/exec"
+
+      url:
+      "https://script.google.com/macros/s/AKfycbzEDQHme0spH7fQuMDWOHGlknMTDQmoBu1nbF_vKGTI-WTlW7XxvNsCNJPYUMvPqeUjvA/exec"
+
     },
+
 
     performance: {
+
       name: "Performance",
+
       icon: "📊",
-      url: "https://script.google.com/macros/s/AKfycbwXYyviCAvDPbYqHhwUCDtBKplp9eOVEL5xSCt3SRlFnBOPMN8AmXaJyfhim2yhCpnc/exec"
+
+      url:
+      "https://script.google.com/macros/s/AKfycbwXYyviCAvDPbYqHhwUCDtBKplp9eOVEL5xSCt3SRlFnBOPMN8AmXaJyfhim2yhCpnc/exec"
+
     },
 
+
     stok: {
+
       name: "Stok",
+
       icon: "📦",
-      url: "https://dslink1602-learning.github.io/stok-ds-link/"
+
+      url:
+      "https://dslink1602-learning.github.io/stok-ds-link/"
+
+    },
+
+
+    katalog: {
+
+      name: "Katalog",
+
+      icon: "📚",
+
+      url:
+      "https://script.google.com/macros/s/AKfycbxLhf6MuDjchs06WvWtsD4RCFIvcfr4ztQdCnpyLmF8EJIvrfj8kNNnjWIx73VPED3-YA/exec"
+
     }
 
   };
@@ -770,27 +1101,38 @@
   let currentApp = null;
 
 
-  /* =========================
+
+  /* =====================================================
      SHOW HOME
-  ========================== */
+  ===================================================== */
 
   function showHome() {
 
-    document.getElementById("homeContent").style.display = "block";
-    document.getElementById("appView").style.display = "none";
+    document.getElementById("homeContent").style.display =
+      "block";
 
-    document.getElementById("headerIcon").textContent = "🏠";
-    document.getElementById("headerTitle").textContent = "Home";
+    document.getElementById("appView").style.display =
+      "none";
+
+
+    document.getElementById("headerIcon").textContent =
+      "🏠";
+
+    document.getElementById("headerTitle").textContent =
+      "Home";
+
 
     setActiveMenu("home");
 
     currentApp = null;
+
   }
 
 
-  /* =========================
+
+  /* =====================================================
      OPEN APPLICATION
-  ========================== */
+  ===================================================== */
 
   function openApp(app) {
 
@@ -798,75 +1140,29 @@
 
     if (!selected) return;
 
+
     currentApp = app;
 
-    document.getElementById("homeContent").style.display = "none";
-    document.getElementById("appView").style.display = "flex";
 
-    document.getElementById("headerIcon").textContent = selected.icon;
-    document.getElementById("headerTitle").textContent = selected.name;
+    document.getElementById("homeContent").style.display =
+      "none";
 
-    document.getElementById("appName").textContent = selected.name;
+    document.getElementById("appView").style.display =
+      "flex";
+
+
+    document.getElementById("headerIcon").textContent =
+      selected.icon;
+
+    document.getElementById("headerTitle").textContent =
+      selected.name;
+
+    document.getElementById("appName").textContent =
+      selected.name;
+
 
     setActiveMenu(app);
 
-    const frame = document.getElementById("appFrame");
-    const loading = document.getElementById("loading");
-
-    loading.style.display = "flex";
-
-    frame.src = selected.url;
-
-    frame.onload = function() {
-      loading.style.display = "none";
-    };
-
-  }
-
-
-  /* =========================
-     ACTIVE MENU
-  ========================== */
-
-  function setActiveMenu(active) {
-
-    const buttons = [
-      "home",
-      "promo",
-      "crm",
-      "performance",
-      "stok"
-    ];
-
-    buttons.forEach(function(item) {
-
-      const button =
-        document.getElementById("menu-" + item);
-
-      if (!button) return;
-
-      button.classList.remove("active");
-
-    });
-
-
-    const selected =
-      document.getElementById("menu-" + active);
-
-    if (selected) {
-      selected.classList.add("active");
-    }
-
-  }
-
-
-  /* =========================
-     REFRESH
-  ========================== */
-
-  function refreshApp() {
-
-    if (!currentApp) return;
 
     const frame =
       document.getElementById("appFrame");
@@ -874,34 +1170,149 @@
     const loading =
       document.getElementById("loading");
 
+
     loading.style.display = "flex";
 
-    frame.src = apps[currentApp].url;
+
+    frame.onload = function() {
+
+      loading.style.display = "none";
+
+    };
+
+
+    frame.src = selected.url;
 
   }
 
 
-  /* =========================
-     OPEN NEW TAB
-  ========================== */
 
-  function openNewTab() {
+  /* =====================================================
+     ACTIVE MENU
+  ===================================================== */
+
+  function setActiveMenu(active) {
+
+
+    const buttons = [
+
+      "home",
+      "promo",
+      "crm",
+      "performance",
+      "stok",
+      "katalog"
+
+    ];
+
+
+    buttons.forEach(function(item) {
+
+
+      const desktop =
+        document.getElementById("menu-" + item);
+
+      const mobile =
+        document.getElementById("mobile-" + item);
+
+
+      if (desktop) {
+
+        desktop.classList.remove("active");
+
+      }
+
+
+      if (mobile) {
+
+        mobile.classList.remove("active");
+
+      }
+
+    });
+
+
+    const selectedDesktop =
+      document.getElementById("menu-" + active);
+
+
+    const selectedMobile =
+      document.getElementById("mobile-" + active);
+
+
+    if (selectedDesktop) {
+
+      selectedDesktop.classList.add("active");
+
+    }
+
+
+    if (selectedMobile) {
+
+      selectedMobile.classList.add("active");
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     REFRESH
+  ===================================================== */
+
+  function refreshApp() {
+
 
     if (!currentApp) return;
 
+
+    const frame =
+      document.getElementById("appFrame");
+
+
+    const loading =
+      document.getElementById("loading");
+
+
+    loading.style.display = "flex";
+
+
+    frame.src =
+      apps[currentApp].url;
+
+  }
+
+
+
+  /* =====================================================
+     OPEN NEW TAB
+  ===================================================== */
+
+  function openNewTab() {
+
+
+    if (!currentApp) return;
+
+
     window.open(
+
       apps[currentApp].url,
+
       "_blank"
+
     );
 
   }
 
 
-  /* =========================
+
+  /* =====================================================
      START
-  ========================== */
+  ===================================================== */
 
   showHome();
+
 
 </script>
 
