@@ -312,41 +312,57 @@
       background: #f3f6fa;
     }
 
-    .zoom-controls {
-      display: none;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .zoom-btn {
-      border: 1px solid #dbe3ed;
-      background: white;
-      border-radius: 7px;
-      min-width: 30px;
-      height: 30px;
-      cursor: pointer;
-      font-size: 15px;
-      color: #374151;
-      line-height: 1;
-    }
-
-    .zoom-btn:hover {
-      background: #f3f6fa;
-    }
-
-    .zoom-value {
-      min-width: 48px;
-      text-align: center;
-      font-size: 11px;
-      color: #6b7280;
-      font-weight: 700;
-    }
-
     .frame-container {
       flex: 1;
       min-height: 0;
       position: relative;
       background: white;
+    }
+
+    .zoom-slider-wrap {
+      display: none;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 38px;
+      min-height: 150px;
+      padding: 9px 7px;
+      border: 1px solid #dbe3ed;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .zoom-slider-label {
+      font-size: 9px;
+      color: #6b7280;
+      font-weight: 700;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      user-select: none;
+    }
+
+    .zoom-slider {
+      width: 120px;
+      height: 24px;
+      margin: 0;
+      transform: rotate(-90deg);
+      accent-color: #075dcc;
+      cursor: pointer;
+    }
+
+    .zoom-slider-value {
+      font-size: 9px;
+      color: #075dcc;
+      font-weight: 800;
+      min-width: 30px;
+      text-align: center;
     }
 
     iframe {
@@ -535,24 +551,16 @@
         font-size: 10px;
       }
 
-
-      .app-toolbar {
-        gap: 6px;
-      }
-
-      .zoom-controls {
+      .zoom-slider-wrap {
         display: flex;
+        right: 5px;
+        min-height: 145px;
+        width: 36px;
+        padding: 8px 6px;
       }
 
-      .zoom-btn {
-        min-width: 28px;
-        height: 28px;
-        font-size: 14px;
-      }
-
-      .zoom-value {
-        min-width: 40px;
-        font-size: 10px;
+      .zoom-slider {
+        width: 112px;
       }
 
       /* ---------- APP ---------- */
@@ -1027,14 +1035,6 @@
 
           </button>
 
-            <div class="zoom-controls" aria-label="Kontrol zoom">
-
-              <button class="zoom-btn"
-                      onclick="changeZoom(-10)"
-                      aria-label="Perkecil">−</button>
-
-              <div id="zoomValue" class="zoom-value">100%</div>
-
               <button class="zoom-btn"
                       onclick="changeZoom(10)"
                       aria-label="Perbesar">+</button>
@@ -1056,6 +1056,24 @@
 
 
       <div class="frame-container">
+
+
+        <div class="zoom-slider-wrap" aria-label="Kontrol zoom">
+
+          <div class="zoom-slider-label">ZOOM</div>
+
+          <input id="zoomSlider"
+                 class="zoom-slider"
+                 type="range"
+                 min="50"
+                 max="120"
+                 step="1"
+                 value="100"
+                 aria-label="Atur zoom">
+
+          <div id="zoomSliderValue" class="zoom-slider-value">100%</div>
+
+        </div>
 
 
         <div id="loading"
@@ -1166,13 +1184,28 @@
   let currentZoom = 100;
 
 
+  const zoomSlider = document.getElementById("zoomSlider");
+
+  if (zoomSlider) {
+    zoomSlider.addEventListener("input", function () {
+      changeZoom(this.value);
+    });
+  }
+
+
   /* =====================================================
      ZOOM
+  ===================================================== */
+  /* =====================================================
+     ZOOM SLIDER
   ===================================================== */
 
   function applyZoom() {
 
     const frame = document.getElementById("appFrame");
+    const slider = document.getElementById("zoomSlider");
+    const valueText = document.getElementById("zoomSliderValue");
+
     const value = currentZoom / 100;
 
     frame.style.width = (100 / value) + "%";
@@ -1180,21 +1213,20 @@
     frame.style.transform = "scale(" + value + ")";
     frame.style.transformOrigin = "top left";
 
-    document.getElementById("zoomValue").textContent =
-      currentZoom + "%";
+    if (slider) slider.value = currentZoom;
+    if (valueText) valueText.textContent = currentZoom + "%";
   }
 
 
-  function changeZoom(step) {
+  function changeZoom(value) {
 
-    currentZoom += step;
-
-    if (currentZoom < 50) currentZoom = 50;
-    if (currentZoom > 120) currentZoom = 120;
+    currentZoom = Math.max(50, Math.min(120, Number(value) || 100));
 
     applyZoom();
   }
 
+
+  
 
 
   /* =====================================================
