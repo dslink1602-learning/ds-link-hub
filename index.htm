@@ -926,6 +926,15 @@
       </button>
 
 
+      <button id="menu-wa"
+              onclick="openApp('wa')">
+
+        <span class="menu-icon">💬</span>
+        <span>WA Center</span>
+
+      </button>
+
+
       <button id="menu-crm"
               onclick="openApp('crm')">
 
@@ -1042,6 +1051,14 @@
       </button>
 
 
+      <button id="mobile-wa"
+              onclick="openApp('wa')">
+
+        💬 WA Center
+
+      </button>
+
+
       <button id="mobile-crm"
               onclick="openApp('crm')">
 
@@ -1129,6 +1146,36 @@
 
           <div class="card-arrow">
             Buka Promo Center →
+          </div>
+
+        </div>
+
+
+
+        <!-- WA CENTER -->
+
+        <div class="card"
+             onclick="openApp('wa')">
+
+          <div>
+
+            <div class="card-icon">
+              💬
+            </div>
+
+            <h3>
+              WA Center
+            </h3>
+
+            <p>
+              Kelola WhatsApp Center
+              dan aktivitas komunikasi pelanggan.
+            </p>
+
+          </div>
+
+          <div class="card-arrow">
+            Buka WA Center →
           </div>
 
         </div>
@@ -1511,6 +1558,18 @@
     },
 
 
+    wa: {
+
+      name: "WA Center",
+
+      icon: "💬",
+
+      url:
+      "https://script.google.com/macros/s/AKfycbxfAyiIQO_gEz1Bz525F5oaIQBmhBARicB0sjyID01B7SHWi8Q2QHluFyZNtCHPT-pk/exec"
+
+    },
+
+
     crm: {
 
       name: "CRM",
@@ -1730,6 +1789,7 @@
 
       "home",
       "promo",
+      "wa",
       "crm",
       "performance",
       "stok",
