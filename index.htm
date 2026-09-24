@@ -934,6 +934,14 @@
 
       </button>
 
+      <button id="menu-jadwal"
+              onclick="openApp('jadwal')">
+
+        <span class="menu-icon">📅</span>
+        <span>JADWAL TOKO</span>
+
+      </button>
+
 
       <button id="menu-crm"
               onclick="openApp('crm')">
@@ -1058,6 +1066,13 @@
 
       </button>
 
+      <button id="mobile-jadwal"
+              onclick="openApp('jadwal')">
+
+        📅 JADWAL TOKO
+
+      </button>
+
 
       <button id="mobile-crm"
               onclick="openApp('crm')">
@@ -1176,6 +1191,34 @@
 
           <div class="card-arrow">
             Buka WA Center →
+          </div>
+
+        </div>
+
+        <!-- JADWAL TOKO -->
+
+        <div class="card"
+             onclick="openApp('jadwal')">
+
+          <div>
+
+            <div class="card-icon">
+              📅
+            </div>
+
+            <h3>
+              JADWAL TOKO
+            </h3>
+
+            <p>
+              Lihat jadwal toko dan
+              pembagian jadwal tim DS Link.
+            </p>
+
+          </div>
+
+          <div class="card-arrow">
+            Buka JADWAL TOKO →
           </div>
 
         </div>
@@ -1569,6 +1612,17 @@
 
     },
 
+    jadwal: {
+
+      name: "JADWAL TOKO",
+
+      icon: "📅",
+
+      url:
+      "https://docs.google.com/spreadsheets/d/136EXmuIqCcdw0DPAx8smEYrzbWoroPFz/preview"
+
+    },
+
 
     crm: {
 
@@ -1790,6 +1844,7 @@
       "home",
       "promo",
       "wa",
+      "jadwal",
       "crm",
       "performance",
       "stok",
