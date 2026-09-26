@@ -994,6 +994,14 @@
 
       </button>
 
+      <button id="menu-approval"
+              onclick="openApp('approval')">
+
+        <span class="menu-icon">📝</span>
+        <span>Approval</span>
+
+      </button>
+
     </div>
 
 
@@ -1134,6 +1142,13 @@
               onclick="openApp('jadwal')">
 
         📅 Jadwal Toko
+
+      </button>
+
+      <button id="mobile-approval"
+              onclick="openApp('approval')">
+
+        📝 Approval
 
       </button>
 
@@ -1346,6 +1361,32 @@
 
           <div class="card-arrow">
             Buka Jadwal Toko →
+          </div>
+
+        </div>
+
+        <div class="card"
+             onclick="openApp('approval')">
+
+          <div>
+
+            <div class="card-icon">
+              📝
+            </div>
+
+            <h3>
+              Approval
+            </h3>
+
+            <p>
+              Kelola pengajuan dan
+              proses approval DS Link.
+            </p>
+
+          </div>
+
+          <div class="card-arrow">
+            Buka Approval →
           </div>
 
         </div>
@@ -1669,6 +1710,17 @@
 
     },
 
+    approval: {
+
+      name: "Approval",
+
+      icon: "📝",
+
+      url:
+      "https://script.google.com/macros/s/AKfycbys1GnfdUv7IVVw5aJZA-ICt69he04WQGif8Zo1JTZ_h1I_Y2BFCYMVz4cS3eI713YPDQ/exec"
+
+    },
+
 
     crm: {
 
@@ -1893,7 +1945,8 @@
       "wa",
       "stok",
       "katalog",
-      "jadwal"
+      "jadwal",
+      "approval"
     ];
 
 
