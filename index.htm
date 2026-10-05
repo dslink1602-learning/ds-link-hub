@@ -1,3 +1,135 @@
+
+Loading older messages…
+User attachment
+urutan tampilannya ga asik nih
+aq pengen seperti ini :
+
+Performance
+CRM
+Promo Center
+WA Center
+Stok
+Katalog
+Jadwal Toko
+JADWAL TOKO ubah menjadi Jadwal Toko ya
+biar selaras dengan yang lain
+coba gimana indexnya
+
+
+
+Nah, ini lebih enak bro. 👍
+
+Saya sudah revisi index HUB berdasarkan file terakhir kamu:
+
+Urutan baru
+Sidebar + Home:
+
+📊 Performance
+👥 CRM
+🎯 Promo Center
+💬 WA Center
+📦 Stok
+📚 Katalog
+📅 Jadwal Toko
+Home tetap diawali Home, lalu 7 tools tersebut.
+
+Nama “JADWAL TOKO” juga sudah saya ubah menjadi “Jadwal Toko” supaya konsisten dengan yang lain.
+
+Tinggal replace seluruh isi index.html di GitHub dengan file ini → Commit changes. 
+
+
+index_jadwal_toko_final.txt
+Document
+mantap bro..thx ya
+Siap brooo 😎🔥
+
+Sekarang HUB makin lengkap:
+
+Performance → CRM → Promo Center → WA Center → Stok → Katalog → Jadwal Toko
+
+Dan yang paling penting, jadwal asli tetap Google Sheet, jadi anak-anak toko nggak perlu belajar sistem baru. 😁
+
+Gas terus bikin DS LINK HUB makin rapi. 💪
+
+
+Pasted text(5).txt
+Document
+aq mo nambah 1 fitur lagi dibawah Jadwal Toko, yaitu Approval
+link nya : https://script.google.com/macros/s/AKfycbys1GnfdUv7IVVw5aJZA-ICt69he04WQGif8Zo1JTZ_h1I_Y2BFCYMVz4cS3eI713YPDQ/exec
+
+aq upload index di github yg terakhir bekerja
+
+
+Siap bro 😎
+
+Saya sudah pakai index terakhir yang kamu upload sebagai dasar, jadi fitur yang sudah jalan tetap dipertahankan. 
+
+Saya tambahkan Approval tepat di bawah Jadwal Toko:
+
+Performance
+CRM
+Promo Center
+WA Center
+Stok
+Katalog
+Jadwal Toko
+Approval 📝
+
+Sudah masuk ke:
+
+Sidebar desktop
+Menu mobile
+Card Home
+URL iframe Approval
+Active menu
+Download file terbaru
+Tinggal replace seluruh isi index.html di GitHub → Commit changes.
+
+Catatan: kalau Approval ternyata tidak muncul di iframe karena Apps Script-nya masih melarang embedding, nanti kita tinggal ubah doGet() Approval ke ALLOWALL, seperti yang pernah kita lakukan di Performance. 
+
+
+index_approval_final.txt
+Document
+dah jadi bro..thx ya
+Sama-sama brooo 😎🔥
+
+Mantap. DS LINK HUB sekarang sudah punya 8 tools dan alurnya makin rapi.
+
+Nanti kalau mau nambah fitur lagi, upload saja index.html yang paling terakhir bekerja seperti tadi. Kita tinggal sambung tanpa mengacak-acak yang sudah jadi. 💪
+
+
+Pasted text(8).txt
+Document
+ini adalah index di github..
+coba cek disitu ada ga yg isinya pengaturan zoom..yg bisa diadjust dari 50 - 120
+kl ada, tlg ubah menjadi 30 - 120 donk
+
+Worked for 6s
+
+
+Betul bro, ketemu! 😎 Di index.html memang ada pengaturan zoom 50–120%.
+
+Sudah saya ubah menjadi 30–120%, termasuk batas minimum di JavaScript supaya slider benar-benar bisa turun sampai 30%.
+
+Yang perlu bro lakukan
+Download index_zoom_30_120.txt
+
+Buka repository GitHub ds-link-hub.
+
+Buka file index.html, lalu klik Edit.
+
+Ganti seluruh isinya dengan isi file yang sudah saya revisi.
+
+Klik Commit changes.
+
+Setelah itu, pengaturan zoom di HUB bisa dipakai dari 30% sampai 120%, dengan kenaikan 1% setiap langkah. Fitur lainnya tetap dipertahankan dari index yang bro upload. 👍
+
+
+index_zoom_30_120.txt
+Document
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -1481,7 +1613,7 @@
                 <input id="zoomRange"
                        class="zoom-range"
                        type="range"
-                       min="50"
+                       min="30"
                        max="120"
                        step="1"
                        value="100"
@@ -1796,7 +1928,7 @@
 
   function setZoom(value) {
 
-    currentZoom = Math.max(50, Math.min(120, Number(value) || 100));
+    currentZoom = Math.max(30, Math.min(120, Number(value) || 100));
 
     applyZoom();
   }
